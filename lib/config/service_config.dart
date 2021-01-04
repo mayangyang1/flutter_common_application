@@ -15,6 +15,7 @@ abstract class ServicePath {
   static const Map<String, String> servicePath = {
 
     'apiFreightlist': ServiceConfig.serviceUrl + '/driver-api/driver-api/freight/list',//货源列表
+    'selfInfo': ServiceConfig.serviceUrl +  '/driver-api/driver-api/person/self/info', //司机信息
   };
 
 }

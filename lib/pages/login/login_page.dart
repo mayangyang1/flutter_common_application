@@ -4,9 +4,9 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('index page'),),
+      appBar: AppBar(title: Text('login page'),),
       body: Container(
-        child: Text('index page'),
+        child: Text('login page'),
       ),
     );
   }

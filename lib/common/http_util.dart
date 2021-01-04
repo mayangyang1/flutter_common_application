@@ -112,7 +112,11 @@ class HttpUtil {
               Toast.toast(response.data['content'].toString());
             }
             if(response.data['code'] == 401) {
-              Get.offAll(LoginPage());
+              Toast.showSimpleNotification('没有权限,请先登录',);
+              Future.delayed(Duration(milliseconds: 3000),(){
+                Get.offAll(LoginPage());
+              });
+              
             }
           }
           dio.unlock();
