@@ -18,15 +18,9 @@ class IndexPage extends StatelessWidget {
   }
 
   _getFreigthList() async {
-    Toast.loading();
-    Map result = await HttpUtil.get('apiFreightlist', success: (res) {
-      if (res['code'] == 200) {
-        Future.delayed(Duration(milliseconds: 1000), () {
-          Toast.hideLoading();
-        });
-        Toast.toast('请求成功');
-      }
-    });
+    // Toast.loading();
+    Map result = await HttpUtil.get('apiFreightlist',);
+    if(result != null && result['code'] == 200) {}
   }
 
   void _getSelfInfo() {

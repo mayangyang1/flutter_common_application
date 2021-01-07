@@ -1,7 +1,8 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_common_application/pages/login/login_page.dart';
+import 'package:flutter_common_application/common/util.dart';
+import 'package:flutter_common_application/routes/app_pages.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_common_application/config/service_config.dart';
 import 'package:get/get.dart';
@@ -52,7 +53,7 @@ class HttpUtil {
   ) async {
 
     //发送post请求
-    await _sendRequest(
+    Map result = await _sendRequest(
       url,
       'post',
       success,
@@ -60,6 +61,7 @@ class HttpUtil {
       headers: headers,
       error: error
     );
+    return result;
   }
 
   //请求处理
@@ -92,8 +94,9 @@ class HttpUtil {
           //请求拦截器
           dio.lock();
           Future<dynamic> future = Future(()async{
-             SharedPreferences prefs = await SharedPreferences.getInstance();
-            return 'JSESSIONID=${prefs.get('cookies')}';
+            //  SharedPreferences prefs = await SharedPreferences.getInstance();
+             SharedPreferences sp = Get.find<SharedPreferences>();
+            return 'JSESSIONID=${sp.get('cookies')}';
           });
           return future.then((cookies){
             options.headers['Cookie'] = cookies;
@@ -113,9 +116,19 @@ class HttpUtil {
             }
             if(response.data['code'] == 401) {
               Toast.showSimpleNotification('没有权限,请先登录',);
+              SharedPreferences sp = Get.find<SharedPreferences>();
+              sp.setString('cookies', '');
               Future.delayed(Duration(milliseconds: 3000),(){
-                Get.offAll(LoginPage());
+                Get.offAllNamed(Routes.LOGIN);
               });
+              
+            }
+          }
+          if(response.request != null && response.request.path != null && response.request.path.endsWith('account/driverLogin')) {
+            if(response.data['code'] == 200) {
+              SharedPreferences sp = Get.find<SharedPreferences>();
+              String cookies = UtilsConfig.getCookies(response);
+              sp.setString('cookies', cookies);
               
             }
           }
@@ -148,6 +161,7 @@ class HttpUtil {
         // Get.snackbar('提示', exception.response.data['content']);
         Toast.toast(exception.response.data['content'].toString());
       }
+      Toast.hideLoading();
       print('exception错误是 $exception');
       _handError(error, '数据请求错误：'+exception.toString());
     }

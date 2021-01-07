@@ -16,6 +16,9 @@ abstract class ServicePath {
 
     'apiFreightlist': ServiceConfig.serviceUrl + '/driver-api/driver-api/freight/list',//货源列表
     'selfInfo': ServiceConfig.serviceUrl +  '/driver-api/driver-api/person/self/info', //司机信息
+    'accountLogin': ServiceConfig.serviceUrl + '/account/driverLogin',//登录
+    'getPublicKey': ServiceConfig.serviceUrl + '/account/account/public/key',//获取公钥
+    'loginOut': ServiceConfig.serviceUrl + '/account/logout',//获取公钥
   };
 
 }
