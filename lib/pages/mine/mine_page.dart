@@ -16,7 +16,7 @@ class MinePage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-
+                Text('controller num is ${_.num}'),
                 ButtonWidget(
                   title: '退出',
                   onTap: (){

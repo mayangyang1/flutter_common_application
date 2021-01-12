@@ -7,11 +7,18 @@ import 'package:flutter_common_application/theme/app_theme.dart';
 import 'package:flutter_common_application/routes/app_pages.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+
+
+
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await DenpendencyInjection.init();
+
   runApp(MyApp());
 }
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

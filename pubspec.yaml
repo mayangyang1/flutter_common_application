@@ -35,6 +35,8 @@ dependencies:
   bot_toast: ^3.0.5
   move_to_background: ^1.0.1
   simple_rsa: 0.0.5
+  flutter_tts: ^2.0.0
+  flutter_local_notifications: ^3.0.3 
 
 dev_dependencies:
   flutter_test:
