@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
           },
         ),
         
-        body:IndexedStack(
+        body: IndexedStack(
           index: _currentIndex,
           children: tabBodies,
         )

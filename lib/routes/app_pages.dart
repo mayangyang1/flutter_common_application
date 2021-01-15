@@ -1,4 +1,5 @@
 
+import 'package:flutter_common_application/pages/keeping/keeping_page.dart';
 import 'package:flutter_common_application/pages/login/login_page.dart';
 import 'package:flutter_common_application/pages/mine/mine_page.dart';
 import 'package:flutter_common_application/pages/mine/mine_page_binding.dart';
@@ -22,6 +23,10 @@ abstract class AppPages {
       name: Routes.MINE,
       page: () => MinePage(),
       binding: MinePageBinding()
+    ),
+    GetPage(
+      name: Routes.KEEPING,
+      page: () => KeepingPage(),
     ),
   ];
 }

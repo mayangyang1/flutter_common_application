@@ -7,5 +7,6 @@ abstract class Routes {
   static const TASK = '/task';
   static const MINE = '/mine';
   static const INDEX = '/index';
+  static const KEEPING = '/keeping';
 
 }

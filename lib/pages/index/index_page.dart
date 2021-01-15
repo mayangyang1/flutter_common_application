@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_common_application/common/http_util.dart';
 import 'package:flutter_common_application/components/toast.dart';
+import 'package:flutter_common_application/pages/keeping/keeping_page.dart';
 import 'package:flutter_common_application/widget/button_widget.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
+import 'package:flutter_common_application/routes/app_pages.dart';
 
 class IndexPage extends StatefulWidget {
   @override
@@ -13,14 +15,14 @@ class IndexPage extends StatefulWidget {
 
 class _IndexPageState extends State<IndexPage> {
   FlutterTts flutterTts;
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+  // FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
   @override
   void initState() {
     super.initState();
     _getSelfInfo();
     _getFreigthList();
     _initFlutterTtts();
-    _flutterLocalNotificationsConfig();
+    // _flutterLocalNotificationsConfig();
   }
 
   @override
@@ -48,41 +50,50 @@ class _IndexPageState extends State<IndexPage> {
           ),
           ButtonWidget(
             title: '提示',
-            onTap: _showNotification,
+            onTap: (){},
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          ButtonWidget(
+            title: '后台持续定位',
+            onTap: () {
+              Get.toNamed(Routes.KEEPING);
+            },
           ),
         ],
       )),
     );
   }
 
-  Future<void> _showNotification() async {
-    const AndroidNotificationDetails androidPlatformChannelSpecifics =
-        AndroidNotificationDetails(
-            'your channel id', 'your channel name', 'your channel description',
-            importance: Importance.max,
-            priority: Priority.high,
-            ticker: 'ticker');
-    const NotificationDetails platformChannelSpecifics =
-        NotificationDetails(android: androidPlatformChannelSpecifics);
-    await flutterLocalNotificationsPlugin.show(
-        0, 'plain title', 'plain body', platformChannelSpecifics,
-        payload: 'item x');
+  // Future<void> _showNotification() async {
+  //   const AndroidNotificationDetails androidPlatformChannelSpecifics =
+  //       AndroidNotificationDetails(
+  //           'your channel id', 'your channel name', 'your channel description',
+  //           importance: Importance.max,
+  //           priority: Priority.high,
+  //           ticker: 'ticker');
+  //   const NotificationDetails platformChannelSpecifics =
+  //       NotificationDetails(android: androidPlatformChannelSpecifics);
+  //   await flutterLocalNotificationsPlugin.show(
+  //       0, 'plain title', 'plain body', platformChannelSpecifics,
+  //       payload: 'item x');
 
-    _speak();
-  }
+  //   _speak();
+  // }
 
-  void _flutterLocalNotificationsConfig() {
-    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  // void _flutterLocalNotificationsConfig() {
+  //   flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
-    /**本地通知 */
-    const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('@mipmap/ic_launcher');
+  //   /**本地通知 */
+  //   const AndroidInitializationSettings initializationSettingsAndroid =
+  //       AndroidInitializationSettings('@mipmap/ic_launcher');
 
-    final InitializationSettings initializationSettings =
-        InitializationSettings(android: initializationSettingsAndroid);
-    flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onSelectNotification: _selectNotification);
-  }
+  //   final InitializationSettings initializationSettings =
+  //       InitializationSettings(android: initializationSettingsAndroid);
+  //   flutterLocalNotificationsPlugin.initialize(initializationSettings,
+  //       onSelectNotification: _selectNotification);
+  // }
 
   Future _selectNotification(String payload) async {
     if (payload != null) {
