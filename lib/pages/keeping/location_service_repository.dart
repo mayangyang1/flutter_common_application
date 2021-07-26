@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'dart:isolate';
+// import 'dart:isolate';
 import 'dart:math';
-import 'dart:ui';
+// import 'dart:ui';
 
 import 'package:background_locator/location_dto.dart';
 
@@ -60,13 +60,13 @@ class LocationServiceRepository {
   }
 
   static Future<void> setLogLabel(String label) async {
-    final date = DateTime.now();
+    // final date = DateTime.now();
     // await FileManager.writeToLogFile(
     //     '------------\n$label: ${formatDateLog(date)}\n------------\n');
   }
 
   static Future<void> setLogPosition(int count, LocationDto data) async {
-    final date = DateTime.now();
+    // final date = DateTime.now();
     // await FileManager.writeToLogFile(
     //     '$count : ${formatDateLog(date)} --> ${formatLog(data)} --- isMocked: ${data.isMocked}\n');
   }

@@ -24,9 +24,64 @@ if (flutterVersionName == null) {
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
+// 导入MobSDK
+apply plugin: 'com.mob.sdk'
+// apply plugin: 'com.huawei.agconnect'
+
 def keystorePropertiesFile = rootProject.file("key.properties")
 def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+// mobPush配置--start
+
+MobSDK {
+    appKey "m3276e22eafd80"//mob平台appkey
+    appSecret "6e64bda583e87992da143d4a603ebbc6"//mob平台appSecret
+
+	//配置MobPush
+    MobPush {
+    	//配置厂商推送（可选配置，不需要厂商推送可不配置，需要哪些厂商推送只需配置哪些厂商配置即可）
+        devInfo {
+        	//配置小米厂商推送
+            XIAOMI {
+                appId "您的小米平台appId"
+                appKey "您的小米平台appKey"
+            }
+
+			//配置华为厂商推送
+            HUAWEI {
+                appId "103926955"
+            }
+
+			//配置魅族厂商推送
+            MEIZU {
+                appId "您的魅族平台appId"
+                appKey "您的魅族平台appKey"
+            }
+
+			//配置FCM厂商推送
+            FCM {
+                //设置默认推送通知显示图标
+                iconRes "@mipmap/ic_launcher"
+            }
+
+            //配置OPPO厂商推送
+            OPPO {
+                appKey "您的OPPO平台appKey"
+                appSecret "您的OPPO平台appSecret"
+            }
+
+            //配置VIVO厂商推送
+            VIVO {
+                appId "您的VIVO平台appId"
+                appKey "您的VIVO平台appKey"
+            }
+        }
+    }
+}
+
+// mobPush配置--end
 
 android {
     compileSdkVersion 29
@@ -65,7 +120,7 @@ android {
             minifyEnabled false //删除无用代码
             shrinkResources false //删除无用资源
             ndk {
-                abiFilters "armeabi-v7a"
+                abiFilters "armeabi-v7a"//, "arm64-v8a"
             }
         }
     }

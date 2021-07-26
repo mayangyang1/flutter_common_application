@@ -9,8 +9,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 
-
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -24,18 +22,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: Size(750, 1334),
-      allowFontScaling: false,   
+      allowFontScaling: false,
       child: GetMaterialApp(
-          builder: BotToastInit(),
-          debugShowCheckedModeBanner: false,
-          initialRoute: '/',
-          theme: appThemeData,
-          defaultTransition: Transition.fade,
-          getPages: AppPages.pages,
-          home: SplashPage()
-          
-        )
+        builder: BotToastInit(),
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/',
+        theme: appThemeData,
+        defaultTransition: Transition.fade,
+        getPages: AppPages.pages,
+        home: SplashPage()
+      )
     );
   }
-  
 }

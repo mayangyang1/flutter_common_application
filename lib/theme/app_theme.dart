@@ -5,6 +5,7 @@ final ThemeData appThemeData = ThemeData(
   accentColor: Colors.blue,
   fontFamily: 'Georgia',
   appBarTheme: _appbarTheme(),
+  brightness: Brightness.light,
   textTheme: TextTheme(
     headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
   ),

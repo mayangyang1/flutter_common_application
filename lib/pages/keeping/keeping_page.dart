@@ -22,11 +22,11 @@ class _KeepingPageState extends State<KeepingPage> {
   ReceivePort port = ReceivePort();
 
   bool isRunning;
-
+  
   @override
   void initState() { 
     super.initState();
-    
+    initPlatformState();
     if (IsolateNameServer.lookupPortByName(
             LocationServiceRepository.isolateName) !=
         null) {
@@ -41,7 +41,7 @@ class _KeepingPageState extends State<KeepingPage> {
         // await updateUI(data);
       },
     );
-    initPlatformState();
+    
 
   }
   Future<void> initPlatformState() async {
